@@ -1,0 +1,210 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pura Tirta Empul</title>
+
+<style>
+*, html { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
+body { font-family:sans-serif; line-height:1.5; }
+
+.navbar {
+  display:flex; justify-content:space-between; align-items:center;
+  position:fixed; top:10px; left:50%; transform:translateX(-50%);
+  width:90%; max-width:1200px; padding:20px 40px;
+  border-radius:50px; border:1px solid gray;
+  background:rgba(0,0,0,0.75); backdrop-filter:blur(2px);
+  box-shadow:0 10px 30px rgba(0,0,0,0.4); z-index:999;
+}
+.navbar a { text-decoration:none; color:white; font-size:22px; font-weight:bold; }
+.ul-navbar { list-style:none; display:flex; gap:40px; }
+.ul-navbar li a { color:white; font-size:16px; font-weight:bold; }
+.ul-navbar li a:hover { color:gray; transition:0.3s; }
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+.hamburger span { width:25px; height:3px; background:white; border-radius:2px; }
+
+/* ===== HERO ===== */
+.container { 
+  background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.55)), url("tirtaempul.jpg");
+  background-size:cover; background-position:center;
+  height:100vh; position:relative;
+}
+.box {
+  position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);
+  text-align:center; color:white;
+}
+.box h1 { font-size:43px; margin-bottom:20px; text-shadow:1px 4px black; }
+.box p { font-size:18px; margin-bottom:30px; text-shadow:1px 2px black; }
+.box a { text-decoration:none; color:black; font-size:18px; font-weight:bold; padding:8px 30px; background:white; border-radius:5px; border:2px solid white; transition:0.3s; }
+.box a:hover { background:rgb(107,100,100); border:2px solid rgb(107,100,100); }
+
+/* ===== SEJARAH ===== */
+.container2 {
+  display:flex; flex-wrap:wrap; justify-content:center; gap:40px;
+  background:linear-gradient(to bottom,#e8f6f3,#ffffff);
+  padding:80px 20px;
+}
+.box3, .box4 { max-width:450px; flex:1 1 400px; text-align:center; }
+.box3 h1, .box4 h1 { text-align:center; color:#0f766e; margin-bottom:20px; padding-top:10px; }
+.box3 p, .box4 p { text-align:justify; padding:15px; line-height:1.4; opacity:0.85; font-size:15px; }
+.logo-sejarah { width:100%; height:250px; object-fit:cover; border-radius:10px; display:block; margin:auto; }
+
+/* ===== RITUAL MELUKAT ===== */
+.melukat { padding:80px 20px; text-align:center; background:linear-gradient(to bottom,#e8f6f3,#ffffff); }
+.melukat h2 { font-size:36px; margin-bottom:20px; color:#0f766e; }
+.melukat .desc { max-width:600px; margin:auto; color:#555; margin-bottom:50px; }
+.melukat-container { display:flex; justify-content:center; flex-wrap:wrap; gap:20px; }
+.card { background:white; border:1px solid black; padding:20px; width:280px; border-radius:15px; box-shadow:0 10px 20px rgba(0,0,0,0.1); transition:0.3s; }
+.card:hover { transform:translateY(-10px); box-shadow:0 15px 30px rgba(15,118,110,0.4); }
+.card h3 { margin-bottom:15px; color:#0f766e; }
+.card ul { text-align:left; padding-left:20px; }
+.card ul li { margin-bottom:8px; }
+
+/* ===== LOKASI ===== */
+.lokasi { padding:80px 20px; text-align:center; background:#0b5f5a; }
+.lokasi h2 { font-size:34px; color:white; margin-bottom:20px; }
+.lokasi p { max-width:600px; margin:auto; color:white; margin-bottom:40px; }
+.lokasi-container { display:flex; flex-wrap:wrap; justify-content:center; gap:30px; max-width:1000px; margin:auto; }
+.map { flex:1 1 300px; min-width:300px; border-radius:15px; overflow:hidden; box-shadow:0 10px 25px rgba(0,0,0,0.2); }
+.info { flex:1 1 300px; min-width:300px; text-align:left; }
+.info h3 { margin-bottom:15px; color:white; }
+.info ul { list-style:none; padding:0; color:white; margin-bottom:20px; }
+.info ul li { margin-bottom:10px; }
+.btn { display:inline-block; padding:12px 20px; background:white; color:black; text-decoration:none; border-radius:25px; transition:0.3s; }
+.btn:hover { background:gray; transition:0.3s ease-in-out; }
+
+/* ===== FOOTER ===== */
+footer { background:#0f766e; color:white; text-align:center; padding:15px 0; font-size:14px; }
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .container2 { flex-direction:column; gap:50px; }
+  .melukat-container { flex-direction:column; align-items:center; }
+  .lokasi-container { flex-direction:column; }
+}
+
+@media(max-width:768px){
+  .box h1 { font-size:35px; }
+  .box p { font-size:16px; }
+  .box a { font-size:16px; padding:10px 25px; }
+  .ul-navbar { position:absolute; top:80px; right:0; background:rgba(0,0,0,0.77); flex-direction:column; width:100%; padding:20px; gap:20px; display:none; border-radius:10px; z-index:1000; }
+  .ul-navbar.active { display:flex; }
+  .hamburger { display:flex; }
+  .card { width:90%; max-width:300px; margin:auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <a href="">PURATIRTAEMPUL</a>
+    <ul class="ul-navbar" id="menu">
+        <li><a href="#beranda">BERANDA</a></li>
+        <li><a href="#sejarah">SEJARAH</a></li>
+        <li><a href="#ritualMelukat">RITUAL MELUKAT</a></li>
+        <li><a href="#peta">PETA & LOKASI</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section id="beranda">
+  <div class="container">
+    <div class="box">
+      <h1>TIRTA EMPUL : JEJAK MATA AIR SUCI SEJAK ABAD KE-10</h1>
+      <p>Menelusuri sejarah, mitologi dan keagungan spiritual para pemandian suci di Gianyar</p>
+      <a href="#sejarah">MULAI JELAJAH</a>
+    </div>
+  </div>
+</section>
+
+<!-- SEJARAH -->
+<section id="sejarah">
+  <div class="container2">
+    <div class="box3">
+      <h1>SEJARAH & MITOLOGI</h1>
+      <img src="rajass.jpg" class="logo-sejarah" alt="Sejarah Tirta Empul">
+      <p>Legenda Tirta Empul menceritakan pertarungan antara Dewa Indra dan Mayadenawa yang angkuh. Mayadenawa menciptakan mata air beracun untuk melemahkan pasukan Dewa Indra. Untuk menyelamatkan mereka, Dewa Indra pun menancapkan tongkatnya ke tanah hingga muncul air suci bernama Tirta Empul yang mampu menyembuhkan. Hingga kini peristiwa ini menjadi simbol kemenangan kebajikan (Dharma) melawan kejahatan (Adharma), yang kini diperingati sebagai hari raya Galungan.</p>
+    </div>
+    <div class="box4">
+      <h1>LINIMASA SEJARAH</h1>
+      <img src="melukat.avif" class="logo-sejarah" alt="Linimasa Tirta Empul">
+      <p>Perkembangan sejarah Pura Tirta Empul dimulai pada abad ke-10 saat didirikan oleh Raja Airlangga sebagai tempat suci yang berkaitan dengan sumber mata air. Pada abad ke-11, kompleks pura dan kolam suci mulai dikembangkan untuk mendukung ritual penyucian diri. Memasuki abad ke-14, dilakukan renovasi oleh Raja Dalem Waturenggong memperkuat fungsi keagamaan pura. Lalu pada abad ke-16, Raja Dalem Bekung menambahkan beberapa bangunan pelengkap. Hingga pada abad ke-20, dilakukan restorasi besar-besaran untuk melestarikan pura sebagai situs bersejarah.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RITUAL MELUKAT -->
+<section id="ritualMelukat">
+  <div class="melukat">
+    <h2>💧 Ritual Melukat</h2>
+    <p class="desc">Ritual melukat di Pura Tirta Empul adalah proses penyucian diri secara spiritual menggunakan air suci untuk membersihkan pikiran, jiwa, dan energi negatif.</p>
+    <div class="melukat-container">
+      <div class="card">
+        <h3>🙏 Tata Cara</h3>
+        <ul>
+          <li>Sembahyang terlebih dahulu</li>
+          <li>Masuk ke kolam suci</li>
+          <li>Mengikuti pancuran satu per satu</li>
+          <li>Berdoa di setiap pancuran</li>
+          <li>Penutup / persembahyangan akhir</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>⚠️ Etika</h3>
+        <ul>
+          <li>Wajib memakai kamen & selendang</li>
+          <li>Menjaga kesopanan</li>
+          <li>Tidak berkata kasar</li>
+          <li>Menghormati area suci</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🎒 Tips</h3>
+        <ul>
+          <li>Datang pagi hari</li>
+          <li>Bawa pakaian ganti</li>
+          <li>Gunakan guide jika perlu</li>
+          <li>Jaga kebersihan</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOKASI -->
+<section id="peta">
+  <div class="lokasi">
+    <h2>📍 Lokasi Pura Tirta Empul</h2>
+    <p>Pura Tirta Empul terletak di Tampaksiring, Bali, dan terkenal dengan sumber mata air sucinya yang digunakan untuk ritual melukat.</p>
+    <div class="lokasi-container">
+      <div class="map">
+        <iframe src="https://www.google.com/maps?q=Pura%20Tirta%20Empul&output=embed" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+      <div class="info">
+        <h3>Informasi</h3>
+        <ul>
+          <li>📍 Tampaksiring, Gianyar, Bali</li>
+          <li>⏰ 08.00 - 18.00 WITA</li>
+          <li>🎟️ Tiket masuk tersedia di lokasi</li>
+          <li>🚗 Akses mudah dengan kendaraan</li>
+        </ul>
+        <a href="https://www.google.com/maps/place/Pura+Tirta+Empul" target="_blank" class="btn">Lihat di Google Maps</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>&copy; 2026 Pura Tirta Empul. All Rights Reserved.</footer>
+
+<script>
+const hamburger = document.getElementById("hamburger");
+const menu = document.getElementById("menu");
+hamburger.addEventListener("click", () => { menu.classList.toggle("active"); });
+</script>
+
+</body>
+</html>
